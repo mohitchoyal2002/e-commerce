@@ -86,7 +86,7 @@ const Checkout = () => {
             </div>
             <div className='flex flex-col'>
               <h1 className='text-2xl font-montserrat text-dark-purple font-semibold '>{product.title}</h1>
-              <p><span className='p-1 rounded-md border border-custom-purple text-xs font-montserrat text-dark-purple font-bold'>{product.category}</span></p>
+              <p><span className='p-1 rounded-md border border-custom-purple text-xs font-montserrat text-gray-400 font-bold'>{product.category}</span></p>
               <span className='mt-2 text-2xl font-bold'>$ {product.price}</span>
               <div className='flex flex-wrap'><p className='text-dark-purple font-medium text-sm font-montserrat mt-5'>{product.description}</p></div>
               <span className=' flex items-center gap-2 text-sm font-montserrat mt-6'>Rating: <AiFillStar className='text-lg text-yellow-400'/>{product.rating.rate}</span>

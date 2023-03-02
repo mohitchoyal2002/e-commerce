@@ -23,9 +23,9 @@ const ProductList = () => {
         .finally(()=>setLoading(false))
     }, [])
 
-    const renderProductCard = data.map((product)=>{
+    const renderProductCard = data.map((product, index)=>{
         return(
-            <Fade bottom><ProductCard product={product} key={product.id}/></Fade>
+            <Fade bottom><ProductCard product={product} key={index}/></Fade>
         )
     })
 

@@ -32,10 +32,17 @@ const ProductDetail = () => {
     }
     catch(err){
       console.log(err);
+      navigate('/')
     }
   }
   const addToCart = async()=>{
     try{
+      try{
+        const res1 = await axios.get('/users/check-user')
+      }
+      catch(err){
+        navigate('/')
+      }
       const res = await axios.post('/cart/add-to-cart', {email: user.email, product})
       console.log(res.data);
       dispatch(add(product))

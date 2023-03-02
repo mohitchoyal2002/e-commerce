@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  orders: []
+  orders: [],
+  selectedOrder: null
 }
 
 const orderSlice = createSlice({
@@ -10,7 +11,10 @@ const orderSlice = createSlice({
   reducers: {
     setOrders: (state, action)=>{
       state.orders = action.payload
-    }
+    },
+    setSelectedOrder: (state, action)=>{
+      state.selectedOrder = action.payload
+    } 
   }
 });
 

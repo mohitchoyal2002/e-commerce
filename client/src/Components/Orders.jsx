@@ -3,16 +3,17 @@ import Cookies from 'js-cookie'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
 import { setUser, User } from '../features/userSlice'
 import Footer from './Footer'
 import Header from './Header'
+import OrderCard from './OrderCard'
 
 const Orders = () => {
 
   const user = useSelector(User)
   const navigate = useNavigate()
 
+  const [orders, setOrders] = useState(null)
 
   const dispatch = useDispatch()
   useEffect(()=>{
@@ -26,7 +27,8 @@ const Orders = () => {
             // console.log(res.data.email);
             const email = res.data.email
             const res2 = await axios.get(`/orders/fetch-orders/${email}`)
-            console.log(res2.data);
+            // console.log(res2.data);  
+            setOrders(res2.data)
           }
           catch(err){
             console.log(err);
@@ -45,7 +47,7 @@ const Orders = () => {
 
 
 
-  if(user === null){
+  if(user === null || orders === null){
     return(
       <div className='absolute top-0 bottom-0 left-0 right-0 flex justify-center items-center'>
         <img src="/images/loading.svg" alt="" className='h-80 w-80'/>
@@ -53,12 +55,20 @@ const Orders = () => {
     )
   }
   else{
+    const renderOrder = orders.map((order, index)=>{
+      return(
+        <OrderCard order={order} key={index}/>
+      )
+    })
     return (
       <div>
         <Header/>
-        <Container>
-
-        </Container>
+        <div className='py-40 text-dark-purple lg:px-28 px-7'>
+          <h1 className='text-4xl text-center font-cinzel font-extrabold mb-5'>My Orders</h1>
+          <div className='flex flex-col gap-10 items-center'>
+            {renderOrder}
+          </div>
+        </div>
         <Footer/>
       </div>
     )
@@ -67,6 +77,3 @@ const Orders = () => {
 
 export default Orders
 
-const Container = styled.div`
-  
-`
