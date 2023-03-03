@@ -3,10 +3,10 @@ import Cookies from 'js-cookie'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { setUser, User } from '../features/userSlice'
-import Footer from './Footer'
-import Header from './Header'
-import OrderCard from './OrderCard'
+import { setUser, User } from '../../features/userSlice'
+import Footer from '../Navigation Bar/Footer'
+import Header from '../Navigation Bar/Header'
+import OrderCard from '../Cards/OrderCard'
 
 const Orders = () => {
 

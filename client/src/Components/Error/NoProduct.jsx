@@ -1,21 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import Footer from './Footer'
-import Header from './Header'
+import Footer from '../Navigation Bar/Footer'
+import Header from '../Navigation Bar/Header'
 
-const ErrorPage = () => {
+const NoProduct = () => {
   return (
     <>
     <Header/>
     <Container>
-        <h1 className='font-extrabold'>404, Page Not Found</h1>
+        <h1 className='font-extrabold'>No Product Added</h1>
     </Container>
     <Footer/>
     </>
   )
 }
 
-export default ErrorPage
+export default NoProduct
 
 const Container = styled.div`
     height: 45vh;

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Fade } from 'react-reveal'
 import styled from 'styled-components'
-import { Images } from '../features/CardSlice'
+import { Images } from '../../features/CardSlice'
 import {useSelector} from 'react-redux'
-import Card from './Card'
+import Card from '../Cards/Card'
 import ProductList from './ProductList'
 
 

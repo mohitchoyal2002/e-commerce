@@ -4,7 +4,7 @@ import {TbTruckDelivery} from 'react-icons/tb'
 import {CgProfile} from 'react-icons/cg'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setUser } from '../features/userSlice'
+import { setUser } from '../../features/userSlice'
 import axios from 'axios'
 
 

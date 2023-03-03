@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { selectedProduct } from '../features/ProductSlice'
+import { selectedProduct } from '../../features/ProductSlice'
 // import CustomerLogin from './CustomerLogin'
-import ErrorPage from './ErrorPage'
-import Footer from './Footer'
-import Header from './Header'
+import ErrorPage from '../Error/ErrorPage'
+import Footer from '../Navigation Bar/Footer'
+import Header from '../Navigation Bar/Header'
 import { AiFillStar } from 'react-icons/ai'
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { setUser } from '../features/userSlice'
+import { setUser } from '../../features/userSlice'
 
 const Checkout = () => {
 
@@ -55,8 +55,8 @@ const Checkout = () => {
     e.preventDefault()
     try{
       const res = await axios.put('/orders/place-order', {email: user.email, pincode, locality, address, city, state, landmark, product})
-      
       msg.innerHTML = `Ordered Placed`
+      navigate('/home')
     }
     catch(err){
       msg.style.color = 'red'

@@ -2,17 +2,18 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { Products, setProductInCart } from "../features/CartSlice";
-import { setUser, User } from "../features/userSlice";
-import Footer from "./Footer";
-import Header from "./Header";
-import NoProduct from "./NoProduct";
-import ProductCard from "./ProductCard";
-import CustomerLogin from './CustomerLogin' 
+import { Products, setProductInCart } from "../../features/CartSlice";
+import { setUser, User } from "../../features/userSlice";
+import Footer from "../Navigation Bar/Footer";
+import Header from "../Navigation Bar/Header";
+import NoProduct from "../Error/NoProduct";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+import CartProductCard from "../Cards/CartProductCard";
 
 const CartPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
@@ -24,6 +25,7 @@ const CartPage = () => {
           dispatch(setUser(res.data));
         } catch (err) {
 					dispatch(setUser(null))
+          navigate('/')
           console.log(err);
         }
       }
@@ -40,7 +42,12 @@ const CartPage = () => {
         const res = await axios.get(`/cart/fetch-cart/${user.email}`);
         dispatch(setProductInCart(res.data.cart));
         // console.log(res.data.cart);
-        setProducts(res.data.cart);
+        if(res.data.cart !== null){
+          setProducts(res.data.cart);
+        }
+        else{
+          setProducts([])
+        }
       } catch (err) {
         console.log(err);
       }
@@ -50,10 +57,14 @@ const CartPage = () => {
 
 	let renderProductCard
 
-	if(user === null){
-		return(<CustomerLogin/>)
+	if(user === null || products === null){
+		return(
+      <div className="flex justify-center items-center absolute top-0 bottom-0 left-0 right-0">
+        <img src="/images/loading.svg" alt="" className="h-80 w-80"/>
+      </div>
+    )
 	}
-	else if(products === null){
+	else if(products === []){
 		return(
 			<NoProduct/>
 		)
@@ -61,7 +72,7 @@ const CartPage = () => {
 	else{
 		renderProductCard = products.map((product, index)=>{
 			return(
-					<ProductCard product = {product} key = {index}/>
+					<CartProductCard product = {product} key = {index}/>
 			)
 		})
 	}

@@ -26,6 +26,27 @@ export const addToCart = async(req, res)=>{
   }
 }
 
+export const removeFromCart = async(req, res)=>{
+  const { email, product } = req.body;
+
+  try {
+    // Find the cart for the given email
+    let cart = await cartModel.findOne({ email });
+
+    const index = cart.cart.indexOf(product)
+
+    cart.cart.splice(index, 1);
+
+    await cart.save();
+
+    res.status(200).json({ success: true, message: 'Product removed from cart' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Server Error' });
+  }
+}
+
+
 export const fetchCart = async(req, res)=>{
   const email = req.params.email
   try{

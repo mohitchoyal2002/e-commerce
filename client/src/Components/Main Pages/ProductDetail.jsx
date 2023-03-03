@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectedProduct } from '../features/ProductSlice'
+import { selectedProduct } from '../../features/ProductSlice'
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import {IoMdFlash} from 'react-icons/io'
 import { BsCart } from 'react-icons/bs';
-import Footer from './Footer';
-import Header from './Header';
-import { add } from '../features/CartSlice';
+import Footer from '../Navigation Bar/Footer';
+import Header from '../Navigation Bar/Header';
+import { add } from '../../features/CartSlice';
 import axios from 'axios';
-import { User } from '../features/userSlice';
-import ErrorPage from './ErrorPage';
+import { User } from '../../features/userSlice'; 
+import ErrorPage from '../Error/ErrorPage';
 
 const ProductDetail = () => {
   const navigate = useNavigate()

@@ -2,29 +2,30 @@ import React from 'react'
 import styled from 'styled-components'
 import {BsBagDash, BsFillPersonFill} from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux';
-import {add} from '../features/CartSlice'
+import {add} from '../../features/CartSlice'
 import { useNavigate } from 'react-router-dom';
-import { setSelectedProduct } from '../features/ProductSlice';
+import { setSelectedProduct } from '../../features/ProductSlice';
 import axios from 'axios'
-import { User } from '../features/userSlice';
+import { User } from '../../features/userSlice';
 
-const ProductCard = (props) => {
+const CartProductCard = (props) => {
     const {product} = props
     let title = product.title.substr(0,20);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector(User)
 
-    const addToCart = async()=>{
+    const removeFromCart = async()=>{
       
       try{
-        const res = await axios.post('/cart/add-to-cart', {email: user.email, product})
+        const res = await axios.delete('/cart/remove-from-cart', {email: user.email, product})
         console.log(res.data);
         dispatch(add(product))
       }
       catch(err){
         console.log(err);
       }
+      // console.log('remove');
     }
 
     const productDetail = ()=>{
@@ -42,13 +43,13 @@ const ProductCard = (props) => {
         <BsFillPersonFill className='text-gray-400'/>
          {product.rating.count}
         </Counting>
-        <BsBagDash onClick={addToCart} className='cursor-pointer text-gray-400'/>
+        <BsBagDash onClick={removeFromCart}title='remove from cart' className='cursor-pointer text-gray-400'/>
       </Icon>
         <Image>
           <img src={product.image} alt="" className='h-full w-full'/>
         </Image>
         <Title>
-          <span onClick={productDetail} title={product.title}>{title}...</span>
+          <span onClick={productDetail} className='hover:underline' title={product.title}>{title}...</span>
         </Title>
         <Price>
           <span>Price: </span>
@@ -58,7 +59,7 @@ const ProductCard = (props) => {
   )
 }
 
-export default ProductCard
+export default CartProductCard
 const Icon = styled.div`
   width: 100%;
   padding: 10px 20px;

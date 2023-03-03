@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import {Link, useNavigate} from 'react-router-dom'
-import { setUser } from "../features/userSlice";
-import { auth, provider } from "./firebase";
+import { setUser } from "../../features/userSlice";
+import { auth, provider } from "../Config/firebase";
 import LeftContainer from "./LeftContainer";
 
 const CustomerSignUp = () => {

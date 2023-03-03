@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import ProductCard from './ProductCard';
+import ProductCard from '../Cards/ProductCard';
 import Fade  from 'react-reveal/Fade';
 import { useNavigate } from 'react-router-dom';
 

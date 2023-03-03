@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Fade from 'react-reveal/Fade'
 import axios from "axios";
-import ProductCard from "./ProductCard";
+import ProductCard from "../Cards/ProductCard";
 import { useDispatch } from "react-redux";
-import { setProducts } from "../features/ProductSlice";
-import Header from "./Header";
-import Footer from "./Footer";
+import { setProducts } from "../../features/ProductSlice";
+import Header from "../Navigation Bar/Header";
+import Footer from "../Navigation Bar/Footer";
 
 const ShopPage = () => {
   const [product, setProduct] = useState([]);

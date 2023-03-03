@@ -3,8 +3,8 @@ import axios from 'axios'
 import { signInWithPopup} from "firebase/auth";
 import {Link, useNavigate} from 'react-router-dom'
 import LeftContainer from "./LeftContainer";
-import { auth, provider } from "./firebase";
-import {setUser} from '../features/userSlice'
+import { auth, provider } from "../Config/firebase";
+import {setUser} from '../../features/userSlice'
 import {useDispatch} from'react-redux'
 
 const CustomerLogin = () => {

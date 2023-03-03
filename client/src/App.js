@@ -1,12 +1,12 @@
-import CustomerLogin from "./Components/CustomerLogin";
+import CustomerLogin from "./Components//Login/CustomerLogin";
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import CustomerSignUp from "./Components/CustomerSignUp";
-import Home from "./Components/Home";
-import Orders from "./Components/Orders";
-import ShopPage from "./Components/ShopPage";
-import ProductDetail from "./Components/ProductDetail";
-import CartPage from "./Components/CartPage";
-import Checkout from "./Components/Checkout";
+import CustomerSignUp from "./Components//Login/CustomerSignUp";
+import Home from "./Components//Main Pages/Home";
+import Orders from "./Components/Main Pages/Orders";
+import ShopPage from "./Components/Main Pages/ShopPage";
+import ProductDetail from "./Components//Main Pages/ProductDetail";
+import CartPage from "./Components/Main Pages/CartPage";
+import Checkout from "./Components/Main Pages/Checkout";
 
 function App() {
   return (

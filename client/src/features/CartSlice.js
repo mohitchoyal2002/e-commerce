@@ -13,11 +13,14 @@ const CartSlice = createSlice({
     },
     setProductInCart: (state, action)=>{
       state.cart = action.payload
+    },
+    deleteProduct: (state, action)=>{
+      state.cart.pop();
     }
   }
 });
 
-export const {add, setProductInCart} = CartSlice.actions
+export const {add, setProductInCart, deleteProduct} = CartSlice.actions
 export const Products = state=>state.CartSlice.cart;
 
 export default CartSlice.reducer
