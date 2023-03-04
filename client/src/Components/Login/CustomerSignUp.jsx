@@ -188,7 +188,7 @@ const CustomerSignUp = () => {
         </div>
         <div className="flex flex-col items-center">
         <span className="text-sm font-light">Already a Member? <Link to='/' className="text-blue-800">Login</Link></span>
-        <Link to='/' className="text-sm font-light text-blue-800">Admin Login</Link>
+        <Link to='/admin-login' className="text-sm font-light text-blue-800">Admin Login</Link>
         </div>
       </div>
     </div>

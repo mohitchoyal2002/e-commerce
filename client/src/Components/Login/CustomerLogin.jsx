@@ -68,7 +68,7 @@ const CustomerLogin = () => {
     e.preventDefault();
     try{
       disable()
-      const res = await axios.post('/users/login', {email, password})
+      const res = await axios.post('users/login', {email, password})
       dispatch(setUser(res.data))
       navigate('/home')
       success()
@@ -105,6 +105,7 @@ const CustomerLogin = () => {
             placeholder="Password"
             onChange={(e)=>setPassword(e.target.value)}
             value={password}
+            autocomplete='disable'
             />
             <div className="w-2/3 flex items-center justify-between">
               <div className="flex items-center gap-1">
@@ -125,7 +126,7 @@ const CustomerLogin = () => {
         </div>
         <div className="flex flex-col items-center">
         <span className="text-sm font-light">New Member? <Link to='/customer-signup' className="text-blue-800">Sign up</Link></span>
-        <Link to='/' className="text-sm font-light text-blue-800">Admin Login</Link>
+        <Link to='/admin-login' className="text-sm font-light text-blue-800">Admin Login</Link>
         </div>
       </div>
     </div>

@@ -23,6 +23,7 @@ const ProfileMenu = (props) => {
       console.log(err);
     }
     dispatch(setUser(null))
+    navigate('/')
   }
   return (
     <div className='bg-white rounded-xl shadow-black drop-shadow-lg absolute top-10 right-1 z-50 p-5 w-96'>

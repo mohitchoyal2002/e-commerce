@@ -19,7 +19,13 @@ import Fade  from "react-reveal/Fade";
 const Header = () => {
 
   const cart = useSelector(Products);
-  const num = cart.length;
+  let num = 0
+  if(cart === null){
+    num = 0
+  }
+  else{
+     num = cart.length;
+  }
   const navigate = useNavigate();
 
   const user = useSelector(User);

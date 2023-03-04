@@ -9,7 +9,7 @@ import Footer from '../Navigation Bar/Footer';
 import Header from '../Navigation Bar/Header';
 import { add } from '../../features/CartSlice';
 import axios from 'axios';
-import { User } from '../../features/userSlice'; 
+import { setUser, User } from '../../features/userSlice'; 
 import ErrorPage from '../Error/ErrorPage';
 
 const ProductDetail = () => {
@@ -28,6 +28,7 @@ const ProductDetail = () => {
   const buyItem = async()=>{
     try{
       const res = await axios.get('/users/check-user')
+      setUser(res.data)
       navigate('/checkout')
     }
     catch(err){

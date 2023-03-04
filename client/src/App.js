@@ -7,11 +7,12 @@ import ShopPage from "./Components/Main Pages/ShopPage";
 import ProductDetail from "./Components//Main Pages/ProductDetail";
 import CartPage from "./Components/Main Pages/CartPage";
 import Checkout from "./Components/Main Pages/Checkout";
+import AdminLogin from "./Components/Admin/Login Pages/AdminLogin";
 
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <Routes>
           <Route path="/" element={<CustomerLogin/>}/>
           <Route path="/customer-signup" element={<CustomerSignUp/>}/>
@@ -21,6 +22,7 @@ function App() {
           <Route path="/product-detail" element={<ProductDetail/>}/>
           <Route path="/cart" element={<CartPage/>}/>
           <Route path='/checkout' element={<Checkout/>}/>
+          <Route path="/admin-login" element={<AdminLogin/>}/>
         </Routes>
       </BrowserRouter>
     </div>

@@ -26,6 +26,7 @@ export const addToCart = async(req, res)=>{
   }
 }
 
+
 export const removeFromCart = async(req, res)=>{
   const { email, product } = req.body;
 

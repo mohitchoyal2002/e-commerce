@@ -23,6 +23,21 @@ const CartPage = () => {
         try {
           const res = await axios.get("/users/check-user");
           dispatch(setUser(res.data));
+          try {
+            const res1 = await axios.get(`/cart/fetch-cart/${res.data.email}`);
+            // console.log(res.data.cart);
+            if(res1.data === null){
+              dispatch(setProductInCart([]));
+              setProducts([])
+            }
+            else{
+              dispatch(setProductInCart(res1.data.cart));
+              setProducts(res1.data.cart);
+            }
+          } catch (err) {
+            console.log(err);
+            navigate('/home')
+          }
         } catch (err) {
 					dispatch(setUser(null))
           navigate('/')
@@ -36,24 +51,24 @@ const CartPage = () => {
 
   const user = useSelector(User);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await axios.get(`/cart/fetch-cart/${user.email}`);
-        dispatch(setProductInCart(res.data.cart));
-        // console.log(res.data.cart);
-        if(res.data.cart !== null){
-          setProducts(res.data.cart);
-        }
-        else{
-          setProducts([])
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchProducts();
-  }, [user]);
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const res = await axios.get(`/cart/fetch-cart/${user.email}`);
+  //       dispatch(setProductInCart(res.data.cart));
+  //       // console.log(res.data.cart);
+  //       if(res.data.cart !== null){
+  //         setProducts(res.data.cart);
+  //       }
+  //       else{
+  //         setProducts([])
+  //       }
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   fetchProducts();
+  // }, [user]);
 
 	let renderProductCard
 
