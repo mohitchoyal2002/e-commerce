@@ -6,6 +6,12 @@ export const createUserToken = (user)=>{
   return token
 }
 
+export const createAdminToken = (user)=>{
+  const token = jwt.sign(user, process.env.USER_SERCRET_KEY, {expiresIn: '2h'})
+
+  return token
+}
+
 export const validateUserToken = (req, res, next)=>{
   try{
     const token = req.cookies['user_token']

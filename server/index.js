@@ -7,13 +7,14 @@ import cookieParser from 'cookie-parser'
 import User from './Routes/UsersRoute.js'
 import cartRouter from './Routes/CartRouter.js'
 import orderRouter from './Routes/OrderRoute.js'
+import adminRouter from './Routes/AdminRouter.js'
 
 const app = express()
 
 app.use(express.json())
 app.use(cors())
 dotenv.config()
-app.use(morgan('common'))
+app.use(morgan('tiny'))
 app.use(cookieParser())
 
 const port = process.env.PORT || 4000
@@ -30,3 +31,5 @@ app.use('/users', User)
 app.use('/cart', cartRouter)
 
 app.use('/orders', orderRouter)
+
+app.use('/admin', adminRouter)

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { selectedProduct } from '../../features/ProductSlice'
 // import CustomerLogin from './CustomerLogin'
 import ErrorPage from '../Error/ErrorPage'
@@ -54,7 +54,7 @@ const Checkout = () => {
     const msg = document.getElementById('msg')
     e.preventDefault()
     try{
-      const res = await axios.put('/orders/place-order', {email: user.email, pincode, locality, address, city, state, landmark, product})
+      await axios.put('/orders/place-order', {email: user.email, pincode, locality, address, city, state, landmark, product})
       msg.innerHTML = `Ordered Placed`
       navigate('/home')
     }

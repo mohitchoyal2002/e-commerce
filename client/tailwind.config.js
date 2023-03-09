@@ -12,6 +12,8 @@ module.exports = {
         "url('http://localhost:3000/images/feature2.jpg')",
         "feature-3": 
         "url('http://localhost:3000/images/feature3.jpg')",
+        "feature-4": 
+        "url('http://localhost:3000/images/sellerCard.webp')",
         "logo":
         "url('http://localhost:3000/images/logo.png')"
       },

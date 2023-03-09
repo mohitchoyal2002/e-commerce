@@ -40,7 +40,7 @@ export const userSignup = async(req, res)=>{
       res.status(400).json("user Already registered")
     }
     else{
-      const newUser = new userModel({firstName, lastName, email, phoneNo, password});
+      const newUser = new userModel({firstName, lastName, email, phoneNo, password, isAdmin: false});
       const savedUser = await newUser.save();
       res.json(savedUser)
     }
@@ -52,6 +52,7 @@ export const userSignup = async(req, res)=>{
 
 export const googleAuth = async(req, res)=>{
   const user = req.body
+  console.log(user);
   const name = seperateName(user.user.displayName)
   const email = user.user.email
   try{

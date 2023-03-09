@@ -39,6 +39,10 @@ const UserModel = Schema({
   landmark:{
     type: String
   },
+  isAdmin:{
+    type: Boolean,
+    default: false
+  },
   orders: [
     {
       product:{

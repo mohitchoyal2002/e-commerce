@@ -39,7 +39,7 @@ const ProductDetail = () => {
   const addToCart = async()=>{
     try{
       try{
-        const res1 = await axios.get('/users/check-user')
+        await axios.get('/users/check-user')
       }
       catch(err){
         navigate('/')
