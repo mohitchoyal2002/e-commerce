@@ -22,7 +22,8 @@ module.exports = {
         'rowdies': 'Rowdies',
         'gochi': 'Gochi Hand',
         'montserrat': 'Montserrat',
-        'cinzel': 'Cinzel Decorative'
+        'cinzel': 'Cinzel Decorative',
+        'nunito': "'Nunito', sans-serif"
       },
       colors:{
         "sale": '#204eff',

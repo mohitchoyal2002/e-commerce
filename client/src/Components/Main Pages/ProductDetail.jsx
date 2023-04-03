@@ -19,6 +19,7 @@ const ProductDetail = () => {
     if(product === null){
       navigate('/home')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   // console.log(product);
   const dispatch = useDispatch()

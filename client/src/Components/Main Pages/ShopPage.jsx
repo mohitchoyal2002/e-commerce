@@ -27,6 +27,7 @@ const ShopPage = () => {
       })
       .catch((err) => console.log(err))
       .finally(() => setLoad(false));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderProductCard = product.map((product) => {

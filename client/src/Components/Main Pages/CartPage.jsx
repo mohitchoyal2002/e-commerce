@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { Products, setProductInCart } from "../../features/CartSlice";
+import { setProductInCart } from "../../features/CartSlice";
 import { setUser, User } from "../../features/userSlice";
 import Footer from "../Navigation Bar/Footer";
 import Header from "../Navigation Bar/Header";
@@ -44,9 +44,13 @@ const CartPage = () => {
           console.log(err);
         }
       }
+      else{
+        navigate('/')
+      }
     };
 
     getCookie();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const user = useSelector(User);

@@ -1,69 +1,116 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const adminModel = new mongoose.Schema({
-  name:{
+  name: {
     type: String,
-    required: true
+    required: true,
   },
-  email:{
+  email: {
     type: String,
-    required: true
+    required: true,
   },
-  phoneNo:{
+  phoneNo: {
     type: String,
   },
-  password:{
+  password: {
     type: String,
-    required: true
+    required: true,
   },
   shopName: {
     type: String,
-    required: true
+    required: true,
   },
-  isAdmin:{
+  isAdmin: {
     type: Boolean,
-    default: true
+    default: true,
   },
-  otp:{
+  otp: {
     type: Number,
   },
-  products:[
+  products: [
     {
-      id:{
+      id: {
         type: Number,
         required: true,
       },
-      title:{
+      title: {
         type: String,
-        required: true
+        required: true,
       },
       price: {
         type: Number,
-        required: true
+        required: true,
       },
-      discription:{
+      discription: {
         type: String,
-        required: true
+        required: true,
       },
-      category:{
+      category: {
         type: String,
-        required: true
+        required: true,
       },
-      image:{
+      image: {
         type: String,
         data: Buffer,
-        contentType: String
+        contentType: String,
       },
-      rating:{
-        rate:{
+      rating: {
+        rate: {
           type: Number,
         },
-        count:{
-          type: Number
-        }
+        count: {
+          type: Number,
+        },
+      },
+    },
+  ],
+  orders: [
+    {
+      customerName: {
+        type: String,
+        required: true,
+      },
+      product: {
+        id: {
+          type: Number,
+          required: true,
+        },
+        title: {
+          type: String,
+          required: true,
+        },
+        price: {
+          type: Number,
+          required: true,
+        },
+        discription: {
+          type: String,
+          required: true,
+        },
+        category: {
+          type: String,
+          required: true,
+        },
+        image: {
+          type: String,
+          data: Buffer,
+          contentType: String,
+        },
+        rating: {
+          rate: {
+            type: Number,
+          },
+          count: {
+            type: Number,
+          },
+        },
+      },
+      status:{
+        type: String,
+        required: true
       }
-    }
-  ]
-})
+    },
+  ],
+});
 
-export default mongoose.model('admin', adminModel)
+export default mongoose.model("admin", adminModel);

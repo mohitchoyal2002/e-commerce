@@ -13,6 +13,10 @@ const UserModel = Schema({
     type: String,
     required: true
   },
+  gender:{
+    type: String,
+    required: true
+  },
   password: {
     type: String,
     required: true
@@ -42,6 +46,9 @@ const UserModel = Schema({
   isAdmin:{
     type: Boolean,
     default: false
+  },
+  otp:{
+    type: Number,
   },
   orders: [
     {

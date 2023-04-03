@@ -1,53 +1,54 @@
 import React, { useEffect, useState } from 'react'
-import AdminLeftContainer from './AdminLeftContainer'
+import LeftContainer from './LeftContainer'
 import Fade from 'react-reveal/Fade'
-import axios from 'axios'
 import { useSelector } from 'react-redux'
-import { User } from '../../../features/userSlice'
+import { User } from '../../features/userSlice'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
-const OtpVarification = () => {
+const VerifyCustomerOtp = () => {
 
   const [otp, setOtp] = useState('')
 
-  const user = useSelector(User)
   const navigate = useNavigate()
+  const user = useSelector(User)
 
   useEffect(()=>{
     if(user === null){
-      navigate('/admin-login')
-    }
-    else{
-      // console.log(user);
+      navigate('/')
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  },[])
 
-  const failed = (err)=>{
-    const msg = document.getElementById('msg')
-    msg.innerText = err
-  }
+  const failed = (error)=>{
+    const msg = document.querySelector('#msg')
 
-  const enable = ()=>{
-    const btn = document.querySelector('.btn')
-    btn.disabled = false;
+    msg.innerText = error
   }
 
   const disable = ()=>{
     const btn = document.querySelector('.btn')
-    btn.disabled = false;
+    btn.disabled = true
   }
 
+  const enable = ()=>{
+    const btn = document.querySelector('.btn')
+    btn.disabled = false
+
+    // setOtp('')
+    // setRePassword('')
+  }
 
   const verifyOtp = async(e)=>{
-    e.preventDefault()
     disable()
+    e.preventDefault();
     
     try{
-      await axios.put('/admin/verify-otp',{email: user.email, otp: otp})
-      navigate('/change-admin-password')
+      await axios.put('/users/verify-otp', {email: user.email, otp})
+      navigate('/change-customer-password')
     }
     catch(err){
+      console.log(err);
       failed(err.response.data)
     }
     finally{
@@ -57,7 +58,7 @@ const OtpVarification = () => {
 
   return (
     <div className='flex w-screen'>
-      <AdminLeftContainer/>
+      <LeftContainer/>
       <Fade right>
       <div className="flex flex-col pt-28 items-center h-screen pb-6 justify-between w-full font-semibold font-montserrat">
         <div className="flex flex-col items-center gap-5 w-full px-10">
@@ -89,4 +90,4 @@ const OtpVarification = () => {
   )
 }
 
-export default OtpVarification
+export default VerifyCustomerOtp

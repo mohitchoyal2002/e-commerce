@@ -1,55 +1,79 @@
 import React, { useEffect, useState } from 'react'
-import AdminLeftContainer from './AdminLeftContainer'
+import LeftContainer from './LeftContainer'
 import Fade from 'react-reveal/Fade'
 import { useSelector } from 'react-redux'
-import { User } from '../../../features/userSlice'
 import { useNavigate } from 'react-router-dom'
+import { User } from '../../features/userSlice'
 import axios from 'axios'
 
-const ChangePassword = () => {
+const ChangeCustomerPassword = () => {
 
   const [password, setPassword] = useState('')
   const [rePassword, setRePassword] = useState('')
 
-  const user = useSelector(User)
   const navigate = useNavigate()
 
-  const failed = (err)=>{
-    const msg = document.getElementById('msg')
-    msg.innerText = err
+  const user = useSelector(User)
+
+  useEffect(()=>{
+    if(user === null){
+      navigate('/')
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const checkPassword = (e)=>{
+    const pass = e.target.value
+    const err = document.getElementById('err')
+
+    if(pass !== password){
+      err.innerText = "Password Dosen't Match!"
+    }
+    else{
+      err.innerText = ""
+    }
+
+    setRePassword(pass)
   }
 
-  const enable = ()=>{
-    const btn = document.querySelector('.btn')
-    btn.disabled = false;
+  const failed = (error)=>{
+    const msg = document.querySelector('#msg')
+
+    msg.innerText = error
+  }
+
+  const success = ()=>{
+    const msg = document.querySelector('#msg')
+
+    msg.innerText = "Password Has Been Changed"
   }
 
   const disable = ()=>{
     const btn = document.querySelector('.btn')
-    btn.disabled = false;
+    btn.disabled = true
   }
 
+  const enable = ()=>{
+    const btn = document.querySelector('.btn')
+    btn.disabled = false
 
-  useEffect(()=>{
-    if(user === null){
-      navigate('/admin-login')
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+    setPassword('')
+    setRePassword('')
+  }
 
-  const updatePassword = async(e) => {
-    e.preventDefault()
+  const updatePassword = async(e)=>{
     disable()
-
+    e.preventDefault()
     try{
-      await axios.put('/admin/update-password', {email: user.email, password: password})
-      document.querySelector('#msg').innerText = "Password Updated"
+      await axios.put('/users/change-password', {email: user.email, password:rePassword})
+      success()
+
       setTimeout(()=>{
-        navigate('/admin-login')
-      }, 1000)
+        navigate('/')
+      }, 1500)
     }
     catch(err){
-      console.log(err);
+      // console.log(err);
       failed(err.response.data)
     }
     finally{
@@ -57,24 +81,9 @@ const ChangePassword = () => {
     }
   }
 
-  const checkPassword = (e)=>{
-    const pass = e.target.value
-    const err = document.getElementById('err')
-    const btn = document.querySelector('.btn')
-    if(pass !== password ){
-      btn.disabled = true
-      err.innerText = "Password Dosen't Match"
-    }
-    else{
-      err.innerText = ""
-      btn.disabled = false
-    }
-    setRePassword(pass)
-  }
-
   return (
     <div className='flex w-screen'>
-      <AdminLeftContainer/>
+      <LeftContainer/>
       <Fade right>
       <div className="flex flex-col pt-28 items-center h-screen pb-6 justify-between w-full font-semibold font-montserrat">
         <div className="flex flex-col items-center gap-5 w-full px-10">
@@ -102,7 +111,7 @@ const ChangePassword = () => {
             <input 
               type="text"
               className="border border-blue-600 rounded-lg text-gray-700 h-10 pl-4 width w-full text-base font-medium focus:outline-none"
-              placeholder="Your Email"
+              placeholder="Re-Enter Password"
               onChange={(e)=>{checkPassword(e)}}
               value={rePassword}
               required
@@ -118,4 +127,4 @@ const ChangePassword = () => {
   )
 }
 
-export default ChangePassword
+export default ChangeCustomerPassword

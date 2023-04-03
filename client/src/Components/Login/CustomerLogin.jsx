@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import { signInWithPopup} from "firebase/auth";
 import {Link, useNavigate} from 'react-router-dom'
@@ -15,6 +15,22 @@ const CustomerLogin = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   
+  const checkUser = async()=>{
+    try{
+      const res = await axios.get('/users/check-user')
+      dispatch(setUser(res.data))
+      navigate('/home')
+    }
+    catch(err){
+
+    }
+  }
+
+  useEffect(()=>{
+    checkUser()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const google = async()=>{
     const msg = document.getElementById('msg')
     try{
@@ -105,7 +121,7 @@ const CustomerLogin = () => {
             placeholder="Password"
             onChange={(e)=>setPassword(e.target.value)}
             value={password}
-            autocomplete='disable'
+            autoComplete='disable'
             />
             <div className="w-2/3 flex items-center justify-between">
               <div className="flex items-center gap-1">
@@ -117,7 +133,7 @@ const CustomerLogin = () => {
               <span className="text-sm font-extralight">remember me</span>
               </div>
               <div>
-                <Link to='/' className='text-sm font-light text-blue-800'>Recover Password</Link>
+                <Link to='/recover-customer-password' className='text-sm font-light text-blue-800'>Recover Password</Link>
               </div>
             </div>
             <button className="btn w-2/3 h-10 rounded-xl bg-blue-600 text-white text-lg focus:outline-none shadow-lg cursor-pointer disabled:brightness-75">Login</button>

@@ -3,8 +3,12 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import Fade from 'react-reveal/Fade'
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Slider = () => {
+
+  const navigate = useNavigate()
+
   return (
     <Wrap>
       <Fade bottom>
@@ -21,7 +25,7 @@ const Slider = () => {
               <h1>CHANGING</h1>
               <h1>ALWAYS</h1>
             </div>
-            <button className="x-btn">Shop Now</button>
+            <button className="x-btn" onClick={()=>{navigate('/shop')}}>Shop Now</button>
         </InnerDiv1>
         <InnerDiv2>
             <div className="text flex flex-col gap-5">
@@ -29,7 +33,7 @@ const Slider = () => {
               <h1>CHANGING</h1>
               <h1>ALWAYS</h1>
             </div>
-            <button className="x-btn">Shop Now</button>
+            <button className="x-btn" onClick={()=>{navigate('/shop')}}>Shop Now</button>
         </InnerDiv2>
         <InnerDiv3>
             <div className="text flex flex-col gap-5">
@@ -37,7 +41,7 @@ const Slider = () => {
               <h1>CHANGING</h1>
               <h1>ALWAYS</h1>
             </div>
-            <button className="x-btn">Shop Now</button>
+            <button className="x-btn" onClick={()=>{navigate('/shop')}}>Shop Now</button>
         </InnerDiv3>
       </Carousel>
       </Fade>

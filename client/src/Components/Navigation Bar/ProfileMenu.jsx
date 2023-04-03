@@ -1,5 +1,4 @@
 import React from 'react'
-import { BsFillPersonFill } from 'react-icons/bs'
 import {TbTruckDelivery} from 'react-icons/tb'
 import {CgProfile} from 'react-icons/cg'
 import { useNavigate } from 'react-router-dom'
@@ -28,14 +27,14 @@ const ProfileMenu = (props) => {
   return (
     <div className='bg-white rounded-xl shadow-black drop-shadow-lg absolute top-10 right-1 z-50 p-5 w-96'>
       <div className='flex gap-5 justify-between mb-4'>
-        <BsFillPersonFill className='text-5xl'/>
+        <img src="/images/profile.svg" alt="" />
         <div className='flex flex-col gap-0'>
           <h1 className='text-2xl font-semibold m-0'>{user.firstName} {user.lastName}</h1>
           <span className='font-medium text-xs text-gray-500'>{user.email}</span>
         </div>
       </div>
       <div className='flex flex-col gap-4'>
-      <div className='flex gap-5 py-4 px-4 border items-center cursor-pointer' >
+      <div className='flex gap-5 py-4 px-4 border items-center cursor-pointer' onClick={()=>{navigate('/user')}} >
           <CgProfile className='text-blue-900 text-4xl'/>
           <div>
           <h1 className='text-xl font-semibold'>My Profile</h1>

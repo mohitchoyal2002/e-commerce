@@ -55,6 +55,10 @@ export const login = async(req, res)=>{
   }
 }
 
+export const logout = (req, res)=>{
+  res.json("Logged Out")
+} 
+
 export const googleAuth = async(req, res)=>{
   const user = req.body
   const name = user.user.displayName
@@ -145,4 +149,8 @@ export const updatePassword = async(req, res)=>{
   catch(err){
     res.status(500).json("Somthing Went Wrong")
   }
+}
+
+export const checkUser = (req, res)=>{
+  res.json(req.body.token);
 }

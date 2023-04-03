@@ -43,6 +43,7 @@ const Orders = () => {
     }
 
     getCookie()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 

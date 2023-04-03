@@ -43,6 +43,7 @@ const Checkout = () => {
     }
 
     getCookie()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const cancel = (e)=>{
@@ -69,6 +70,7 @@ const Checkout = () => {
     if(product === null){
       navigate('/home')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   if(product === null){
     return(

@@ -1,4 +1,3 @@
-import { async } from '@firebase/util'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -49,6 +48,7 @@ const SetDetail = () => {
       setName(user.name)
       setEmail(user.email)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const signup = async(e)=>{
@@ -56,7 +56,7 @@ const SetDetail = () => {
 
     disable()
     try{
-      const res = await axios.post('/admin/signup', {name: name, email, password, phoneNo,shopName})
+      await axios.post('/admin/signup', {name: name, email, password, phoneNo,shopName})
       // console.log(res.data);
       success()
       navigate('/admin-login')

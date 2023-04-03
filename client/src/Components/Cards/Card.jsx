@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Card = (props) => {
+
+	const navigate = useNavigate()
   const {img} = props
   const {url, name} = img
   return (
 		<Container url = {url} name = {name} >
-			<button className="x-btn">Shop Now</button>
+			<button className="x-btn" onClick={()=>navigate('/shop')}>Shop Now</button>
 		</Container>
 	);
 };
